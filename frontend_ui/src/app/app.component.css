@@ -1,3 +1,19 @@
-/* All main dashboard layout, palette, theme, spacing, utility, responsive, and global rules are now in styles.css.
-   This file should only define minor component-level tweaks or overrides if needed for AppComponent.
-   (Empty or near-empty is desired for Angular CSS size budget compliance.) */
+/* 
+  All major dashboard theme, palette, layout, spacing, and rhythm rules are in styles.css.
+  This file is intentionally left near-empty for app-level overrides only. 
+  Example: tweak transition for dark/light mode, or app-root host-level sizing.
+
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background: var(--color-primary-bg);
+  transition: var(--transition-bg);
+}
+*/
+
+/* Minimal override for .dashboard-root, if additional padding/tweaks required
+.dashboard-root {
+  padding: 0;  // Use global --dashboard-main-padding for sections/layouts.
+}
+*/

@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap');
 
 /* 
   Root Theme Variables - Light and Dark Modes
   Consistent, harmonious dashboard spacing, palette, radii, font sizes, shadow, logical grouping.
+  - All sizes and spacing: multiples of 4px/8px using rem (1rem = 16px for fluid scaling)
+  - Pastel blue/green/cyan/purple accent colors
+  - Balanced cards/sidebar/header/charts: consistent box-shadow, border-radius, spacing
+  - Inter/Roboto as primary font families (fallbacks)
 */
 
 /* LIGHT MODE */
@@ -14,8 +18,8 @@
   --color-sidebar-bg: #f8faff;
   --color-main-accent: #4669fa;
   --color-accent-green: #2eb67d;
-  --color-accent-purple: #8f59ff;
   --color-accent-cyan: #3bd6ff;
+  --color-accent-purple: #8f59ff;
   --color-accent-error: #eb6262;
   --color-nav-active-bg: #e4eaff;
   --color-header-border: #f0f4fa;
@@ -25,50 +29,76 @@
   --color-warning: #ffc02f;
   --color-focus-outline: #4669fa;
 
-  /* Shadows */
-  --shadow-card: 0 3px 16px 0 #e5ecf933;
-  --shadow-sidebar: 2px 0 24px 0 rgba(72, 105, 250, 0.05);
-  --shadow-header: 0 2px 18px 0 #e6eafa12;
-  --shadow-float-l: 0 4px 20px #d2e2ff22;
+  /* Pastel grid - for charts and highlight accents */
+  --pastel-blue: #b4cdfb;
+  --pastel-green: #b9ecd3;
+  --pastel-cyan: #acfaff;
+  --pastel-purple: #e4d4fb;
+  --pastel-bg-gradient: linear-gradient(120deg,#d8f0ff 0%,#ecf3fa 100%);
 
-  /* Spacing */
-  --space-xs: 5px;
-  --space-sm: 10px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --space-xl: 48px;
+  /* Shadows */
+  --shadow-card: 0 4px 20px 0 #e5ecf933;
+  --shadow-sidebar: 2px 0 28px 0 rgba(72, 105, 250, 0.06);
+  --shadow-header: 0 2px 18px 0 #e6eafa1a;
+  --shadow-float-l: 0 8px 24px #d2e2ff24;
+
+  /* Spacing (horizontal/vertical rhythm: multiples of 4/8px) */
+  --space-1: 0.25rem;      /* 4px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-3: 1rem;         /* 16px */
+  --space-4: 1.5rem;       /* 24px */
+  --space-5: 2rem;         /* 32px */
+  --space-6: 3rem;         /* 48px */
+  --space-7: 4rem;         /* 64px */
+
+  --gap-x: var(--space-3);           /* 16px - general horizontal gap */
+  --gap-y: var(--space-4);           /* 24px - general vertical gap */
+  --gap-card: var(--space-3);        /* 16px - between cards on grid */
 
   /* Border radius */
-  --radius-btn: 7px;
-  --radius-card: 16px;
-  --radius-card-inner: 12px;
-  --radius-round: 100px;
+  --radius-btn: 0.4375rem;           /* 7px */
+  --radius-card: 1rem;               /* 16px */
+  --radius-card-inner: 0.75rem;      /* 12px */
+  --radius-xl: 100vw;
+  --radius-avatar: 50%;
+  --radius-field: 0.5rem;            /* 8px */
 
-  /* Font sizes */
-  --font-title: 1.25rem;            /* ~20px */
-  --font-card-title: 1.125rem;      /* ~18px */
-  --font-body: 15.5px;
-  --font-label: 14px;
-  --font-stat: 16px;
-  --font-nav: 15px;
-  --font-footer: 15px;
-  --font-small: 12.5px;
+  /* Font sizes (rem — fluid scaling) */
+  --font-title: 1.25rem;             /* 20px */
+  --font-card-title: 1.125rem;       /* 18px */
+  --font-body: 0.97rem;              /* 15.5px */
+  --font-label: 0.875rem;            /* 14px */
+  --font-stat: 1rem;                 /* 16px */
+  --font-nav: 0.94rem;               /* 15px */
+  --font-footer: 0.94rem;            /* 15px */
+  --font-small: 0.78rem;             /* 12.5px */
 
   /* Font family */
   --font-main: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 
   /* Sidebar */
-  --sidebar-width: 210px;
-  --sidebar-padding-top: var(--space-lg);
+  --sidebar-width: 13.125rem;      /* 210px */
+  --sidebar-padding-top: var(--space-5);
 
-  /* Layout */
-  --header-height: 62px;
-  --content-gap: var(--space-md);        /* Card/content gap */
-  --grid-card-gap: var(--space-md);
+  /* Container Layouts */
+  --header-height: 3.875rem;       /* 62px */
+  --content-gap: var(--space-4);   /* 24px */
+  --container-max-width: 94rem;    /* 1504px for container max */
+  --dashboard-main-padding: var(--space-5); /* 32px desktop, reduced on tablet */
 
-  /* Others */
-  --transition-bg: background 0.20s, color 0.15s, box-shadow 0.12s;
-  --transition-focus: outline-color .19s;
+  /* Cards */
+  --card-padding: var(--space-4);           /* 24px */
+  --card-padding-sm: var(--space-3);        /* 16px */
+  --card-gap: var(--gap-card);
+
+  /* Focus/transition */
+  --transition-bg: background 0.15s, color 0.13s, box-shadow 0.10s;
+  --transition-focus: outline-color .12s;
+
+  /* Z-layers */
+  --z-navbar: 10;
+  --z-dropdown: 50;
+  --z-modal: 100;
 }
 
 /* DARK MODE */
@@ -78,8 +108,8 @@
   --color-sidebar-bg: #1b2030;
   --color-main-accent: #91b0fa;
   --color-accent-green: #41daae;
-  --color-accent-purple: #ae84fa;
   --color-accent-cyan: #68e6fa;
+  --color-accent-purple: #ae84fa;
   --color-accent-error: #eb6262;
   --color-nav-active-bg: #213667;
   --color-header-border: #31394b;
@@ -88,20 +118,62 @@
   --color-success-dot: #18e29c;
   --color-warning: #ffc02f;
   --color-focus-outline: #91b0fa;
-  --shadow-card: 0 3px 16px 0 #1b213733;
-  --shadow-sidebar: 2px 0 24px 0 #4669fa0b;
-  --shadow-header: 0 2px 18px 0 #232c4233;
+  --shadow-card: 0 4px 18px 0 #1b213733;
+  --shadow-sidebar: 2px 0 22px 0 #4669fa04;
+  --shadow-header: 0 2px 18px 0 #232c4266;
+  --pastel-blue: #24406f;
+  --pastel-green: #1c3d2c;
+  --pastel-cyan: #20494d;
+  --pastel-purple: #322b47;
+  --pastel-bg-gradient: linear-gradient(120deg,#243545 0%,#23273a 100%);
   color-scheme: dark;
 }
 
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Set base font and background for full page */
 body {
   font-family: var(--font-main);
+  font-size: var(--font-body);
+  color: var(--color-primary-text);
   background: var(--color-primary-bg);
   margin: 0;
-  color: var(--color-primary-text);
-  font-size: var(--font-body);
+  line-height: 1.54;
   transition: background 0.18s, color 0.13s;
+  min-height: 100vh;
 }
+
+@media (max-width: 1024px) {
+  :root {
+    --dashboard-main-padding: var(--space-3);   /* 16px on tablets/small desktop */
+    --sidebar-width: 46vw;                      /* Responsive sidebar */
+  }
+}
+@media (max-width: 700px) {
+  :root {
+    --dashboard-main-padding: var(--space-2);   /* 8px on mobile */
+    --sidebar-width: 96vw;
+  }
+  body {
+    font-size: 0.94rem;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-primary-text);
+  font-weight: 600;
+}
+h1 { font-size: var(--font-title);}
+h2 { font-size: 1.15rem;}
+h3 { font-size: 1.05rem;}
 
 /* Material Symbols (Google Fonts) */
 .material-symbols-outlined {
@@ -124,3 +196,8 @@ body {
   height: 1px; width: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px);
   white-space: nowrap;
 }
+
+/* Root vertical/horizontal rhythm helpers */
+.rhythm-vertical { margin-bottom: var(--gap-y) !important; }
+.rhythm-horizontal { margin-right: var(--gap-x) !important; }
+

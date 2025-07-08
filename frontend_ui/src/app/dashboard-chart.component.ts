@@ -23,7 +23,7 @@ Features:
   standalone: true,
   imports: [NgChartsModule, NgIf],
   template: `
-    <div style="width:100%;height:auto;">
+    <div class="dashboard-chart-wrapper">
       <canvas
         *ngIf="isBrowser"
         baseChart
@@ -31,16 +31,51 @@ Features:
         [data]="data"
         [options]="chartOpts"
         [height]="height || 90"
-        style="font-family:'Inter',sans-serif;border-radius:10px;"
+        class="dashboard-chart-canvas"
       ></canvas>
-      <div *ngIf="!isBrowser" class="fake-chart" style="height:67px; margin-top:17px; border-radius:7px; background:linear-gradient(90deg, #f3f5fc 60%, #f5faff 100%); color:#b4bddb; display:flex; align-items:center; justify-content:center;">
+      <div *ngIf="!isBrowser" class="dashboard-fake-chart">
         [Chart not available in server render]
       </div>
     </div>
   `,
   styles: [`
-    :host { display: block; }
-    canvas { max-width: 100%; border-radius: 9px;}
+    :host {
+      display: block;
+      min-width: 0;
+      width: 100%;
+    }
+    .dashboard-chart-wrapper {
+      width: 100%;
+      height: auto;
+      background: var(--color-card-bg, #fff);
+      border-radius: var(--radius-card-inner, 12px);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-3) var(--space-3) var(--space-1) var(--space-3);
+      transition: background .18s;
+      min-height: 94px;
+    }
+    .dashboard-chart-canvas {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-card-inner, 12px);
+      box-shadow: 0 1.5px 8px #aec9fa18;
+      background: transparent;
+      font-family: var(--font-main), sans-serif;
+      transition: box-shadow .16s;
+    }
+    .dashboard-fake-chart {
+      height: 67px;
+      margin-top: 17px;
+      border-radius: var(--radius-field, 8px);
+      background: var(--pastel-bg-gradient,linear-gradient(90deg, #f3f5fc 60%, #f5faff 100%));
+      color: #b4bddb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-label);
+      letter-spacing: 0.01em;
+    }
   `]
 })
 export class DashboardChartComponent {

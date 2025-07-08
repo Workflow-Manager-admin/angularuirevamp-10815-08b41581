@@ -1,2 +1,217 @@
-/* All palette/theme/layout/utility rules are now defined globally in styles.css.
-   Only add component-unique rules here if absolutely required for device overview. */
+/* 
+  Device Overview Card styles – harmonized to theme variables and rhythm grid
+  (All palette, typographic and utility rules in styles.css; only specific tweaks here)
+*/
+
+.device-overview {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--card-padding);
+  min-width: 0;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Card header */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.card-title {
+  font-size: var(--font-card-title);
+  font-weight: 600;
+  color: var(--color-primary-text);
+  letter-spacing: 0.01em;
+}
+
+.device-image {
+  font-size: 2.4rem;
+  color: var(--color-main-accent);
+}
+
+/* Two-column grid for meta info */
+.device-meta-responsive {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  gap: var(--gap-x) var(--gap-y);
+}
+@media (max-width: 900px) {
+  .device-meta-responsive {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+.meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.meta-col-usage {
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+.meta-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-1);
+  gap: var(--space-1);
+}
+.device-label {
+  color: var(--color-secondary-text);
+  min-width: 79px;
+  font-size: var(--font-label);
+  font-weight: 500;
+}
+.device-value {
+  color: var(--color-primary-text);
+  font-size: var(--font-stat);
+  font-weight: 500;
+}
+.status-dot-wrap .status-dot {
+  display: inline-block;
+  margin-right: 0.19em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-success-dot);
+  box-shadow: 0 0 0 2.5px var(--color-card-bg);
+  vertical-align: middle;
+}
+.status-dot.offline {
+  background: var(--color-accent-error);
+}
+.status-dot.online {
+  background: var(--color-success-dot);
+}
+.health-dot {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 50%;
+  margin-right: 0.2em;
+  background: var(--color-success-dot);
+}
+.good-health { background: var(--color-success-dot) !important; }
+.mediocre-health { background: var(--color-warning) !important; }
+.bad-health { background: var(--color-accent-error) !important; }
+
+.mini-copy, .info-icon {
+  margin-left: 0.27em;
+  color: var(--color-accent-green);
+  cursor: pointer;
+}
+.with-tooltip .info-icon {
+  color: var(--color-accent-cyan); 
+  vertical-align: middle;
+}
+.health-tooltip .info-icon {
+  color: var(--color-accent-purple);
+  font-size: 1em;
+}
+
+/* Progress bars */
+.device-progress-outer {
+  display: inline-block;
+  position: relative;
+  width: 94px;
+  height: 12px;
+  background: var(--pastel-blue);
+  border-radius: var(--radius-field);
+  overflow: hidden;
+  margin-right: 0.7em;
+}
+.device-progress-inner {
+  display: block;
+  height: 100%;
+  background: var(--color-main-accent);
+  border-radius: var(--radius-field);
+  transition: width 0.36s cubic-bezier(.7,.1,.32,1);
+}
+.device-progress-inner.mem { background: var(--color-accent-green);}
+.device-progress-inner.disk { background: var(--color-accent-purple);}
+.mini-progress-label { font-size: var(--font-small); color: var(--color-primary-text); font-weight: 400;}
+.conn-row {
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.conn-sep {
+  color: var(--color-header-border);
+  margin: 0 0.32em;
+}
+.conn-type {
+  color: var(--color-main-accent);
+  font-weight: 700;
+}
+.conn-count {
+  font-size: var(--font-small);
+  margin-left: 0.12em;
+  color: var(--color-secondary-text);
+}
+.fw-update-indicator .accent {
+  color: var(--color-accent-green)!important;
+}
+
+.device-action-btn {
+  background: var(--pastel-bg-gradient);
+  color: var(--color-main-accent);
+  border: none;
+  padding: var(--space-1) var(--space-3);
+  margin-right: var(--space-1);
+  border-radius: var(--radius-btn);
+  font-size: var(--font-label);
+  font-weight: 600;
+  box-shadow: 0 1px 2px #e4eaff11;
+  cursor: pointer;
+  transition: box-shadow 0.14s, background 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.device-action-btn:last-child { margin-right: 0 }
+.device-action-btn.restart { color: var(--color-accent-purple);}
+.device-action-btn.config  { color: var(--color-accent-green);}
+.device-action-btn.export  { color: var(--color-accent-cyan);}
+.device-action-btn:hover, .device-action-btn:focus {
+  background: var(--color-nav-active-bg);
+  box-shadow: 0 2px 8px #b4cdfb26;
+  outline: 1.8px solid var(--color-focus-outline);
+}
+
+.meta-actions-row {
+  margin-top: var(--space-2);
+  gap: var(--space-1);
+}
+
+.device-adv-info {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-header-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-3);
+  font-size: var(--font-label);
+  color: var(--color-secondary-text);
+}
+.device-adv-info .device-value {
+  margin-left: 0.29em;
+  color: var(--color-primary-text);
+  font-size: var(--font-label);
+}
+.adv-field {
+  margin-right: var(--space-4);
+}
+@media (max-width: 900px) {
+  .device-adv-info {
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-1);
+    margin-top: var(--space-2);
+  }
+}
+
