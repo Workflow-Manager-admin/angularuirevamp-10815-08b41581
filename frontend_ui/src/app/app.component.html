@@ -91,30 +91,7 @@
     <main class="dashboard-main-content" tabindex="-1" aria-label="Dashboard main content">
       <div class="dashboard-card-grid">
         <!-- Device Overview card -->
-        <section class="dashboard-card device-overview" aria-labelledby="device-overview-title">
-          <div class="card-header">
-            <span id="device-overview-title" class="card-title">Device Overview</span>
-            <span class="device-image material-symbols-outlined" aria-hidden="true" style="color:#4669fa;font-size:2.4rem;">wifi</span>
-          </div>
-          <div class="device-details-list">
-            <div>
-              <span class="device-label">Type:</span>
-              <span class="device-value">{{ deviceInfo.type }}</span>
-            </div>
-            <div>
-              <span class="device-label">Status:</span>
-              <span class="device-value">{{ deviceInfo.status }}</span>
-            </div>
-            <div>
-              <span class="device-label">Location:</span>
-              <span class="device-value">{{ deviceInfo.location }}</span>
-            </div>
-            <div>
-              <span class="device-label">Last updated:</span>
-              <span class="device-value">{{ deviceInfo.lastUpdated }}</span>
-            </div>
-          </div>
-        </section>
+        <app-device-overview [device]="deviceInfo"></app-device-overview>
 
         <!-- Quick Stats card -->
         <section class="dashboard-card quick-stats" aria-labelledby="quick-stats-title">

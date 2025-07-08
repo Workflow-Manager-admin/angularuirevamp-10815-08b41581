@@ -270,22 +270,13 @@ body {
   margin-top: -8px;
 }
 
-.device-details-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 10px;
-  column-gap: 18px;
-  font-size: 15px;
+/* ---- Device Overview Enhanced Styles ---- */
+.device-overview {
+  /* Extends dashboard-card */
+  padding: 28px 30px 20px 30px;
+  min-height: 210px;
 }
-.device-label {
-  color: var(--secondary-text);
-  font-weight: 450;
-}
-.device-value {
-  color: var(--primary-text);
-  font-weight: 600;
-  margin-left: 0.5ch;
-}
+/* Device Overview card/component-specific styles removed and moved to device-overview.component.css to comply with style budget. */
 .quick-stats-list {
   margin: 0;
   padding: 0;

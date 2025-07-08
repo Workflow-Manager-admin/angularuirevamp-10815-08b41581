@@ -2,6 +2,7 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DashboardChartComponent } from './dashboard-chart.component';
+import { DeviceOverviewComponent } from './device-overview.component';
 import { ChartData, ChartOptions } from 'chart.js';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { CommonModule, NgIf, NgForOf, isPlatformBrowser } from '@angular/common';
@@ -21,6 +22,7 @@ AppComponent: Main shell for dashboard,
   imports: [
     RouterOutlet,
     DashboardChartComponent,
+    DeviceOverviewComponent,
     CommonModule,
     NgIf,
     NgForOf,
@@ -62,10 +64,31 @@ export class AppComponent {
 
   // Device/Stats mock
   deviceInfo = {
+    icon: 'wifi',
     type: 'Wi-Fi Gateway',
-    status: 'Active',
+    status: 'Active', // "Active", "Offline", "Restarting"
+    statusCode: 1, // 0=offline, 1=active, 2=warning
     location: 'Building A, Floor 2',
-    lastUpdated: 'Just now'
+    ip: '192.168.12.24',
+    mac: '04:D4:C4:28:41:82',
+    firmware: '2.19.4-c',
+    fwUpdate: true,
+    version: 'v2.19.4',
+    health: 'Good', // Good, Warning, Critical
+    healthInfo: 'Performance stable, 5.3% error rate in past 24h',
+    connectivity: 'Ethernet, Wi-Fi',
+    connectionsStats: [
+      { type: 'LAN', icon: 'lan', count: 3 },
+      { type: 'Wi-Fi', icon: 'wifi', count: 8 },
+      { type: 'Guest', icon: 'accounts', count: 1 }
+    ],
+    uptime: '13d 9h 02m',
+    cpu: 37,      // %
+    memory: 53,   // %
+    disk: 62,     // %
+    serial: 'AX2027-8932',
+    lastUpdated: 'Just now',
+    notes: 'Device near HVAC, check for temp fluctuation',
   };
   quickStats = {
     online: 12,

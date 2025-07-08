@@ -20,7 +20,7 @@ import {
   ɵɵdefineNgModule,
   ɵɵdirectiveInject,
   ɵɵinject
-} from "./chunk-732YQL55.js";
+} from "./chunk-TO3TOLJB.js";
 
 // node_modules/@kurkle/color/dist/color.esm.js
 function round(v) {
