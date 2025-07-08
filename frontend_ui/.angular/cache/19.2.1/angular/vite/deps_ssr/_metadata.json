@@ -1,56 +1,62 @@
 {
-  "hash": "a3e23961",
-  "configHash": "0fbfb2ee",
-  "lockfileHash": "95247fdb",
-  "browserHash": "0ae1a59b",
+  "hash": "4e32295e",
+  "configHash": "f8698e2a",
+  "lockfileHash": "080095dc",
+  "browserHash": "705ec62e",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "714561c5",
+      "fileHash": "e4e09147",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "287a0332",
+      "fileHash": "5bd696cf",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "74de19ce",
+      "fileHash": "f8176139",
       "needsInterop": false
     },
     "@angular/platform-server": {
       "src": "../../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
       "file": "@angular_platform-server.js",
-      "fileHash": "c736f429",
+      "fileHash": "e1ef9474",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "dbb53feb",
+      "fileHash": "d29c72ad",
       "needsInterop": false
     },
     "@angular/ssr": {
       "src": "../../../../../../node_modules/@angular/ssr/fesm2022/ssr.mjs",
       "file": "@angular_ssr.js",
-      "fileHash": "0ac28f31",
+      "fileHash": "287be674",
       "needsInterop": false
     },
     "@angular/ssr/node": {
       "src": "../../../../../../node_modules/@angular/ssr/fesm2022/node.mjs",
       "file": "@angular_ssr_node.js",
-      "fileHash": "fa5f949d",
+      "fileHash": "681409e6",
       "needsInterop": false
     },
     "express": {
       "src": "../../../../../../node_modules/express/index.js",
       "file": "express.js",
-      "fileHash": "2b11178c",
+      "fileHash": "0c0d4199",
       "needsInterop": true
+    },
+    "ng2-charts": {
+      "src": "../../../../../../node_modules/ng2-charts/fesm2015/ng2-charts.mjs",
+      "file": "ng2-charts.js",
+      "fileHash": "ac6f6edf",
+      "needsInterop": false
     }
   },
   "chunks": {

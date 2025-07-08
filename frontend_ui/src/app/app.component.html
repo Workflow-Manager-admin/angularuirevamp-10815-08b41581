@@ -102,21 +102,36 @@
           <div class="card-header">
             <span id="network-activity-title" class="card-title">Network Activity</span>
           </div>
-          <div class="fake-chart chart-line">[Line chart]</div>
+          <app-dashboard-chart
+            [type]="'line'"
+            [data]="lineChartData"
+            [options]="lineOptions"
+            height="90"
+          ></app-dashboard-chart>
         </section>
         <!-- Row 2, Card 2: Device Acquisitions -->
         <section class="dashboard-card chart-card" aria-labelledby="device-acquisitions-title">
           <div class="card-header">
             <span id="device-acquisitions-title" class="card-title">Device Acquisitions</span>
           </div>
-          <div class="fake-chart chart-bar">[Bar chart]</div>
+          <app-dashboard-chart
+            [type]="'bar'"
+            [data]="barChartData"
+            [options]="barOptions"
+            height="90"
+          ></app-dashboard-chart>
         </section>
         <!-- Row 2, Card 3: Content Usage -->
         <section class="dashboard-card chart-card" aria-labelledby="content-usage-title">
           <div class="card-header">
             <span id="content-usage-title" class="card-title">Content Usage</span>
           </div>
-          <div class="fake-chart chart-stack">[Stacked chart]</div>
+          <app-dashboard-chart
+            [type]="'bar'"
+            [data]="stackedBarChartData"
+            [options]="stackedBarOptions"
+            height="90"
+          ></app-dashboard-chart>
         </section>
       </div>
     </main>
