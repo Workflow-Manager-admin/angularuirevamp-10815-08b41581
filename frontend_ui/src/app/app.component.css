@@ -21,6 +21,25 @@ body {
   color: var(--primary-text);
 }
 
+/* Footer styles */
+.footer-bar {
+  height: 51px;
+  background: var(--card-bg);
+  border-top: 1px solid var(--header-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: var(--secondary-text);
+  letter-spacing: 0.01em;
+  margin-top: auto;
+  min-height: 45px;
+}
+.footer-text {
+  opacity: 0.96;
+}
+
+
 .dashboard-root {
   min-height: 100vh;
   display: flex;
@@ -202,6 +221,7 @@ body {
   background: var(--primary-bg);
   min-height: 0;
   outline: none;
+  box-sizing: border-box;
 }
 
 /* Card grid layout */
@@ -211,6 +231,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, minmax(185px, auto));
   gap: 20px;
+  box-sizing: border-box;
 }
 
 .dashboard-card {
@@ -325,6 +346,18 @@ body {
     grid-template-rows: auto;
   }
   .dashboard-card { padding: 16px 8px; }
+  .footer-bar {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 0 10px;
+  }
+}
+
+/* Make sure main-area takes min height for dashboard-root layout */
+.main-area {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* High contrast, focus, hover etc. */

@@ -1,10 +1,10 @@
 <!--
-  Redesigned Device Management Dashboard main layout.
-  Header, sidebar, main content structure per design notes.
+  Device Management Dashboard Layout - Professional, Responsive, Minimalist
+  Sidebar left, Header top, Footer bottom, Card grid, Logical ARIA and order.
 -->
 
 <div class="dashboard-root">
-  <!-- Sidebar -->
+  <!-- Sidebar Navigation -->
   <aside class="sidebar" aria-label="Main navigation">
     <div class="sidebar-header">
       <span class="sidebar-logo" aria-label="Application Logo">🔌</span>
@@ -12,7 +12,7 @@
     </div>
     <nav class="sidebar-nav" aria-label="Sidebar Navigation">
       <ul>
-        <li class="nav-item active" tabindex="0">
+        <li class="nav-item active" tabindex="0" aria-current="page">
           <span class="nav-icon" aria-hidden="true">🏠</span>
           <span class="nav-label">Dashboard</span>
         </li>
@@ -32,10 +32,10 @@
     </nav>
   </aside>
 
-  <!-- Main area -->
+  <!-- Main Area (Header, Content, Footer) -->
   <div class="main-area">
     <!-- Header -->
-    <header class="header-bar">
+    <header class="header-bar" role="banner">
       <div class="header-title">Device Management</div>
       <div class="header-search">
         <label for="dashboard-search" class="visually-hidden">Search devices</label>
@@ -48,10 +48,10 @@
       </div>
     </header>
 
-    <!-- Main content grid -->
-    <main class="dashboard-main-content" tabindex="-1">
+    <!-- Main Content Area (responsively organized grid) -->
+    <main class="dashboard-main-content" tabindex="-1" aria-label="Dashboard main content">
       <div class="dashboard-card-grid">
-        <!-- Row 1, Card 1: Device Overview -->
+        <!-- Device Overview card -->
         <section class="dashboard-card device-overview" aria-labelledby="device-overview-title">
           <div class="card-header">
             <span id="device-overview-title" class="card-title">Device Overview</span>
@@ -76,7 +76,8 @@
             </div>
           </div>
         </section>
-        <!-- Row 1, Card 2: Quick Stats -->
+
+        <!-- Quick Stats card -->
         <section class="dashboard-card quick-stats" aria-labelledby="quick-stats-title">
           <div class="card-header">
             <span id="quick-stats-title" class="card-title">Quick Stats</span>
@@ -97,7 +98,8 @@
             </li>
           </ul>
         </section>
-        <!-- Row 2, Card 1: Network Activity -->
+
+        <!-- Network Activity chart card -->
         <section class="dashboard-card chart-card" aria-labelledby="network-activity-title">
           <div class="card-header">
             <span id="network-activity-title" class="card-title">Network Activity</span>
@@ -109,7 +111,8 @@
             height="90"
           ></app-dashboard-chart>
         </section>
-        <!-- Row 2, Card 2: Device Acquisitions -->
+
+        <!-- Device Acquisitions chart card -->
         <section class="dashboard-card chart-card" aria-labelledby="device-acquisitions-title">
           <div class="card-header">
             <span id="device-acquisitions-title" class="card-title">Device Acquisitions</span>
@@ -121,7 +124,8 @@
             height="90"
           ></app-dashboard-chart>
         </section>
-        <!-- Row 2, Card 3: Content Usage -->
+
+        <!-- Content Usage chart card -->
         <section class="dashboard-card chart-card" aria-labelledby="content-usage-title">
           <div class="card-header">
             <span id="content-usage-title" class="card-title">Content Usage</span>
@@ -135,6 +139,11 @@
         </section>
       </div>
     </main>
+
+    <!-- Footer: Simple, balanced, sticks to layout and minimal palette -->
+    <footer class="footer-bar" role="contentinfo">
+      <span class="footer-text">&copy; 2024 Device Management &ndash; All rights reserved.</span>
+    </footer>
   </div>
 </div>
-<router-outlet />
+<router-outlet/>

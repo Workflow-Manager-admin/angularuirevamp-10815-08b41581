@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
-import { ChartType, ChartData, ChartOptions } from 'chart.js';
-import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
+import { ChartData, ChartOptions } from 'chart.js';
+import { NgChartsModule } from 'ng2-charts';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, NgIf } from '@angular/common';
 
