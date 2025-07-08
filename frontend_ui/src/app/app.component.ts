@@ -96,74 +96,162 @@ export class AppComponent {
     alerts: 1
   };
 
-  // Demo chart data (interactively update as needed)
+  // Demo chart data illustrating modern, pastel palette and usage-focused scenarios:
   lineChartData: ChartData<'line'> = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: [
+      'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'
+    ],
     datasets: [
       {
-        data: [110, 135, 130, 120, 150, 160, 170],
-        label: 'Packets',
+        data: [120, 175, 132, 205, 189, 210],
+        label: 'Network Traffic',
         borderColor: '#4669fa',
         backgroundColor: 'rgba(70,105,250,0.13)',
-        pointBackgroundColor: '#4669fa',
-        tension: 0.35,
-        fill: true
+        pointBackgroundColor: '#ffffff',
+        pointBorderColor: '#4669fa',
+        pointHoverBackgroundColor: '#4669fa',
+        pointHoverBorderColor: '#3bd6ff',
+        tension: 0.36,
+        fill: true,
+        cubicInterpolationMode: 'monotone'
       }
     ]
   };
   barChartData: ChartData<'bar'> = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
     datasets: [
       {
-        data: [2, 6, 10, 8, 7, 9],
+        data: [15, 24, 18, 29],
         label: 'Device Acquisitions',
-        backgroundColor: '#2eb67d'
+        backgroundColor: [
+          'rgba(46,182,125,0.72)', // pastel green
+          'rgba(70,105,250,0.72)', // pastel blue
+          'rgba(63,214,255,0.62)', // pastel cyan
+          'rgba(143,89,255,0.64)'  // pastel purple
+        ],
+        borderRadius: 10,
+        barPercentage: 0.68,
+        categoryPercentage: 0.72
       }
     ]
   };
   stackedBarChartData: ChartData<'bar'> = {
-    labels: ['Video', 'Docs', 'Sensor Data'],
+    labels: ['Video', 'Web', 'Gaming', 'Social'],
     datasets: [
       {
-        label: 'Usage - UI',
-        data: [30, 70, 55],
-        backgroundColor: '#8f59ff'
+        label: 'Usage (GB/day)',
+        data: [33, 25, 14, 22],
+        backgroundColor: '#4669fa' // pastel blue
       },
       {
-        label: 'Usage - Automation',
-        data: [50, 18, 30],
-        backgroundColor: '#3bd6ff'
+        label: 'Gaming (GB/day)',
+        data: [4, 5, 29, 5],
+        backgroundColor: '#3bd6ff' // pastel cyan
+      },
+      {
+        label: 'Social (GB/day)',
+        data: [6, 8, 6, 21],
+        backgroundColor: '#2eb67d' // pastel green
+      },
+      {
+        label: 'Streaming (GB/day)',
+        data: [16, 12, 8, 13],
+        backgroundColor: '#8f59ff' // pastel purple
       }
     ]
   };
 
+  // Chart.js options with animation, tooltips, Inter font, and palette:
   barOptions: ChartOptions<'bar'> = {
     plugins: {
-      legend: { display: false }
+      legend: {
+        display: false
+      },
+      tooltip: {
+        enabled: true,
+        backgroundColor: '#4669fa',
+        titleColor: '#fff',
+        bodyColor: '#d6e4ff',
+        titleFont: { family: 'Inter', weight: 600, size: 13 },
+        bodyFont: { family: 'Inter', size: 14 }
+      }
     },
-    scales: { x: {}, y: { beginAtZero: true } }
+    scales: { 
+      x: {
+        grid: { display: false }, 
+        ticks: { font: { family: 'Inter', weight: 600 }, color: '#2d3958'}
+      },
+      y: { beginAtZero: true, grid: { color: '#f0f4fa' }, ticks: {color: '#7a88af', font: { family: 'Inter' } } } 
+    },
+    animation: {
+      duration: 950,
+      easing: 'easeInOutCubic'
+    }
   };
   lineOptions: ChartOptions<'line'> = {
     plugins: {
       legend: { display: false },
-      tooltip: { enabled: true }
+      tooltip: {
+        enabled: true,
+        backgroundColor: '#4669fa',
+        titleColor: '#fff',
+        bodyColor: '#d6e4ff',
+        intersect: false,
+        titleFont: { family: 'Inter', weight: 700, size: 13 },
+        bodyFont: { family: 'Inter', weight: 500, size: 13 }
+      }
     },
     elements: {
-      point: { radius: 5, hoverRadius: 7, borderWidth: 2 }
+      point: { radius: 6, hoverRadius: 8, borderWidth: 2, borderColor: '#4669fa', backgroundColor: '#fff' }
     },
-    scales: { x: {}, y: { beginAtZero: true } }
+    scales: { 
+      x: { 
+        grid: { display: false },
+        ticks: { font: { family: 'Inter', weight: 600 }, color: '#2d3958' }
+      },
+      y: { 
+        beginAtZero: true,
+        grid: { color: '#f0f4fa' },
+        ticks: {color: '#7a88af', font: { family: 'Inter' } }
+      }
+    },
+    animation: {
+      duration: 950,
+      easing: 'easeInOutCubic'
+    }
   };
   stackedBarOptions: ChartOptions<'bar'> = {
     plugins: {
       legend: {
         display: true,
-        labels: { color: '#2d3958' }
+        position: 'top',
+        labels: { color: '#4669fa', font: { family: 'Inter', weight: 600, size: 13 }, usePointStyle: true, padding: 16 }
       },
-      tooltip: { enabled: true }
+      tooltip: {
+        enabled: true,
+        backgroundColor: '#3bd6ff',
+        titleColor: '#2d3958',
+        bodyColor: '#23272f',
+        titleFont: { family: 'Inter', weight: 600, size: 13 },
+        bodyFont: { family: 'Inter', size: 13 }
+      }
     },
     scales: {
-      x: { stacked: true },
-      y: { stacked: true, beginAtZero: true }
+      x: { 
+        stacked: true, 
+        grid: { display: false },
+        ticks: { font: { family: 'Inter', weight: 600 }, color: '#2d3958'}
+      },
+      y: { 
+        stacked: true, 
+        beginAtZero: true, 
+        grid: { color: '#f0f4fa' },
+        ticks: {color: '#7a88af', font: { family: 'Inter' } }
+      }
+    },
+    animation: {
+      duration: 1000,
+      easing: 'easeInOutQuart'
     }
   };
 
