@@ -1,9 +1,12 @@
 <!--
-  Device Management Dashboard Layout - Professional, Responsive, Minimalist
-  Sidebar left, Header top, Footer bottom, Card grid, Logical ARIA and order.
+  Device Management Dashboard – Angular UI Revamp
+  - Sidebar w/ icons and active state
+  - Top bar w/ search, dark toggle, notifications bell w/ dot, profile (Reshma, Online)
+  - Breadcrumb
+  - Grid: Info/Stats cards, responsive charts, collapsible, smooth effects, accessible
 -->
 
-<div class="dashboard-root">
+<div class="dashboard-root" [class.dark-mode]="isDarkMode">
   <!-- Sidebar Navigation -->
   <aside class="sidebar" aria-label="Main navigation">
     <div class="sidebar-header">
@@ -12,67 +15,103 @@
     </div>
     <nav class="sidebar-nav" aria-label="Sidebar Navigation">
       <ul>
-        <li class="nav-item active" tabindex="0" aria-current="page">
-          <span class="nav-icon" aria-hidden="true">🏠</span>
-          <span class="nav-label">Dashboard</span>
+        <li
+          class="nav-item"
+          tabindex="0"
+          [class.active]="selectedMenu === 0"
+          (click)="selectMenu(0)"
+          aria-current="page"
+          aria-label="Broadband Service"
+        >
+          <span class="nav-icon material-symbols-outlined" aria-hidden="true">router</span>
+          <span class="nav-label">Broadband</span>
         </li>
-        <li class="nav-item" tabindex="0">
-          <span class="nav-icon" aria-hidden="true">📱</span>
-          <span class="nav-label">Device</span>
+        <li
+          class="nav-item"
+          tabindex="0"
+          [class.active]="selectedMenu === 1"
+          (click)="selectMenu(1)"
+          aria-label="LAN Service"
+        >
+          <span class="nav-icon material-symbols-outlined" aria-hidden="true">lan</span>
+          <span class="nav-label">LAN Service</span>
         </li>
-        <li class="nav-item" tabindex="0">
-          <span class="nav-icon" aria-hidden="true">🌐</span>
-          <span class="nav-label">Network</span>
-        </li>
-        <li class="nav-item" tabindex="0">
-          <span class="nav-icon" aria-hidden="true">⚙️</span>
-          <span class="nav-label">Setting</span>
+        <li
+          class="nav-item"
+          tabindex="0"
+          [class.active]="selectedMenu === 2"
+          (click)="selectMenu(2)"
+          aria-label="Syslog Service"
+        >
+          <span class="nav-icon material-symbols-outlined" aria-hidden="true">list_alt</span>
+          <span class="nav-label">Syslog Service</span>
         </li>
       </ul>
     </nav>
   </aside>
 
-  <!-- Main Area (Header, Content, Footer) -->
+  <!-- Main Area (Header, Breadcrumb, Grid, Footer) -->
   <div class="main-area">
-    <!-- Header -->
+    <!-- Topbar/Header -->
     <header class="header-bar" role="banner">
-      <div class="header-title">Device Management</div>
+      <div class="header-title" aria-label="Dashboard Title">Device Management</div>
+      <nav class="breadcrumb" aria-label="Breadcrumb" *ngIf="breadcrumb.length">
+        <ol>
+          <li *ngFor="let crumb of breadcrumb; let last = last"
+              [class.active]="last"
+              aria-current="page">
+            <ng-container *ngIf="!last">{{ crumb }} <span class="breadcrumb-chevron">›</span></ng-container>
+            <ng-container *ngIf="last">{{ crumb }}</ng-container>
+          </li>
+        </ol>
+      </nav>
       <div class="header-search">
         <label for="dashboard-search" class="visually-hidden">Search devices</label>
-        <input id="dashboard-search" type="search" autocomplete="off" placeholder="Search devices..." />
+        <input id="dashboard-search" type="search" autocomplete="off" [attr.aria-label]="'Search devices'" placeholder="Search devices..." [(ngModel)]="searchText" />
+        <span class="header-search-icon material-symbols-outlined" aria-hidden="true">search</span>
       </div>
-      <div class="header-user">
-        <span class="user-avatar" aria-label="Admin online"></span>
-        <span class="user-name">Admin</span>
-        <span class="user-online-indicator" title="Online"></span>
+      <div class="header-actions">
+        <button class="header-action-btn" (click)="toggleDarkMode()" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined">{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</span>
+        </button>
+        <button class="header-action-btn" (click)="toggleNotifications()" aria-label="Show notifications">
+          <span class="material-symbols-outlined">notifications</span>
+          <span class="notif-count" *ngIf="notifCount > 0" [attr.title]="notifCount + ' unread'">{{ notifCount }}</span>
+          <span class="notif-dot" *ngIf="notifCount > 0"></span>
+        </button>
+        <div class="header-profile" tabindex="0" aria-haspopup="menu">
+          <span class="user-avatar" aria-label="Profile Reshma"></span>
+          <span class="user-name">Reshma</span>
+          <span class="user-online-indicator" title="Online"></span>
+        </div>
       </div>
     </header>
 
-    <!-- Main Content Area (responsively organized grid) -->
+    <!-- Main Content Area (collapsible grid & cards) -->
     <main class="dashboard-main-content" tabindex="-1" aria-label="Dashboard main content">
       <div class="dashboard-card-grid">
         <!-- Device Overview card -->
         <section class="dashboard-card device-overview" aria-labelledby="device-overview-title">
           <div class="card-header">
             <span id="device-overview-title" class="card-title">Device Overview</span>
-            <span class="device-image" aria-hidden="true">🖥️</span>
+            <span class="device-image material-symbols-outlined" aria-hidden="true" style="color:#4669fa;font-size:2.4rem;">wifi</span>
           </div>
           <div class="device-details-list">
             <div>
               <span class="device-label">Type:</span>
-              <span class="device-value">Sensor</span>
+              <span class="device-value">{{ deviceInfo.type }}</span>
             </div>
             <div>
               <span class="device-label">Status:</span>
-              <span class="device-value">Active</span>
+              <span class="device-value">{{ deviceInfo.status }}</span>
             </div>
             <div>
               <span class="device-label">Location:</span>
-              <span class="device-value">Building A</span>
+              <span class="device-value">{{ deviceInfo.location }}</span>
             </div>
             <div>
               <span class="device-label">Last updated:</span>
-              <span class="device-value">Just now</span>
+              <span class="device-value">{{ deviceInfo.lastUpdated }}</span>
             </div>
           </div>
         </section>
@@ -81,66 +120,81 @@
         <section class="dashboard-card quick-stats" aria-labelledby="quick-stats-title">
           <div class="card-header">
             <span id="quick-stats-title" class="card-title">Quick Stats</span>
-            <span class="quick-icon" aria-hidden="true">📶</span>
+            <span class="quick-icon material-symbols-outlined" aria-hidden="true" style="color:#2eb67d;">network_wifi</span>
           </div>
           <ul class="quick-stats-list">
             <li>
               <span class="stat-label">Online Devices</span>
-              <span class="stat-value">12</span>
+              <span class="stat-value accent">{{ quickStats.online }}</span>
             </li>
             <li>
               <span class="stat-label">Offline Devices</span>
-              <span class="stat-value">2</span>
+              <span class="stat-value">{{ quickStats.offline }}</span>
             </li>
             <li>
               <span class="stat-label">Alerts</span>
-              <span class="stat-value">1</span>
+              <span class="stat-value" [class.has-alert]="quickStats.alerts>0">{{ quickStats.alerts }}</span>
             </li>
           </ul>
         </section>
 
-        <!-- Network Activity chart card -->
+        <!-- Collapsible network activity -->
         <section class="dashboard-card chart-card" aria-labelledby="network-activity-title">
           <div class="card-header">
             <span id="network-activity-title" class="card-title">Network Activity</span>
+            <button class="collapse-btn" [attr.aria-label]="networkOpen ? 'Collapse' : 'Expand'" (click)="networkOpen=!networkOpen">
+              <span class="material-symbols-outlined" [style.transform]="networkOpen?'rotate(0deg)':'rotate(-90deg)'">expand_more</span>
+            </button>
           </div>
-          <app-dashboard-chart
-            [type]="'line'"
-            [data]="lineChartData"
-            [options]="lineOptions"
-            height="90"
-          ></app-dashboard-chart>
+          <div *ngIf="networkOpen" [@expandCollapse]>
+            <app-dashboard-chart
+              [type]="'line'"
+              [data]="lineChartData"
+              [options]="lineOptions"
+              height="90"
+              (chartHover)="onChartHover()"
+            ></app-dashboard-chart>
+          </div>
         </section>
-
-        <!-- Device Acquisitions chart card -->
+        <!-- Collapsible device acquisitions -->
         <section class="dashboard-card chart-card" aria-labelledby="device-acquisitions-title">
           <div class="card-header">
             <span id="device-acquisitions-title" class="card-title">Device Acquisitions</span>
+            <button class="collapse-btn" [attr.aria-label]="deviceAcqOpen ? 'Collapse' : 'Expand'" (click)="deviceAcqOpen=!deviceAcqOpen">
+              <span class="material-symbols-outlined" [style.transform]="deviceAcqOpen?'rotate(0deg)':'rotate(-90deg)'">expand_more</span>
+            </button>
           </div>
-          <app-dashboard-chart
-            [type]="'bar'"
-            [data]="barChartData"
-            [options]="barOptions"
-            height="90"
-          ></app-dashboard-chart>
+          <div *ngIf="deviceAcqOpen" [@expandCollapse]>
+            <app-dashboard-chart
+              [type]="'bar'"
+              [data]="barChartData"
+              [options]="barOptions"
+              height="90"
+              (chartHover)="onChartHover()"
+            ></app-dashboard-chart>
+          </div>
         </section>
-
-        <!-- Content Usage chart card -->
+        <!-- Collapsible content usage -->
         <section class="dashboard-card chart-card" aria-labelledby="content-usage-title">
           <div class="card-header">
             <span id="content-usage-title" class="card-title">Content Usage</span>
+            <button class="collapse-btn" [attr.aria-label]="contentUsageOpen ? 'Collapse' : 'Expand'" (click)="contentUsageOpen=!contentUsageOpen">
+              <span class="material-symbols-outlined" [style.transform]="contentUsageOpen?'rotate(0deg)':'rotate(-90deg)'">expand_more</span>
+            </button>
           </div>
-          <app-dashboard-chart
-            [type]="'bar'"
-            [data]="stackedBarChartData"
-            [options]="stackedBarOptions"
-            height="90"
-          ></app-dashboard-chart>
+          <div *ngIf="contentUsageOpen" [@expandCollapse]>
+            <app-dashboard-chart
+              [type]="'bar'"
+              [data]="stackedBarChartData"
+              [options]="stackedBarOptions"
+              height="90"
+              (chartHover)="onChartHover()"
+            ></app-dashboard-chart>
+          </div>
         </section>
       </div>
     </main>
 
-    <!-- Footer: Simple, balanced, sticks to layout and minimal palette -->
     <footer class="footer-bar" role="contentinfo">
       <span class="footer-text">&copy; 2024 Device Management &ndash; All rights reserved.</span>
     </footer>
