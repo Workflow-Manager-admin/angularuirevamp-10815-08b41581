@@ -1,10 +1,10 @@
 .dashboard-chart-wrapper {
   width: 100%;
   height: auto;
-  background: var(--color-card-bg, #fff);
-  border-radius: var(--radius-card-inner, 12px);
+  background: var(--color-card-bg);
+  border-radius: var(--radius-card-inner);
   box-shadow: var(--shadow-card);
-  padding: var(--space-3) var(--space-3) var(--space-1) var(--space-3);
+  padding: var(--card-padding-sm) var(--card-padding-sm) var(--space-1) var(--card-padding-sm);
   transition: background .18s;
   min-height: 94px;
 }
@@ -12,7 +12,7 @@
   max-width: 100%;
   width: 100%;
   height: auto;
-  border-radius: var(--radius-card-inner, 12px);
+  border-radius: var(--radius-card-inner);
   box-shadow: 0 1.5px 8px #aec9fa18;
   background: transparent;
   font-family: var(--font-main), sans-serif;
@@ -20,9 +20,9 @@
 }
 .dashboard-fake-chart {
   height: 67px;
-  margin-top: 17px;
-  border-radius: var(--radius-field, 8px);
-  background: var(--pastel-bg-gradient,linear-gradient(90deg, #f3f5fc 60%, #f5faff 100%));
+  margin-top: var(--space-3);
+  border-radius: var(--radius-field);
+  background: var(--pastel-bg-gradient);
   color: #b4bddb;
   display: flex;
   align-items: center;
@@ -33,6 +33,6 @@
 @media (max-width: 900px) {
   .dashboard-chart-wrapper {
     padding: var(--space-2);
-    min-height: 72px;
+    min-height: 60px;
   }
 }
