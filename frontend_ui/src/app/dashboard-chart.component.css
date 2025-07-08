@@ -4,8 +4,9 @@
   background: var(--color-card-bg);
   border-radius: var(--radius-card-inner);
   box-shadow: var(--shadow-card);
+  border: var(--border-card);
   padding: var(--card-padding-sm) var(--card-padding-sm) var(--space-1) var(--card-padding-sm);
-  transition: background .18s;
+  transition: background .18s, border-color .14s, box-shadow .15s;
   min-height: 94px;
 }
 .dashboard-chart-canvas {
@@ -17,6 +18,8 @@
   background: transparent;
   font-family: var(--font-main), sans-serif;
   transition: box-shadow .16s;
+  outline: none;
+  border: none;
 }
 .dashboard-fake-chart {
   height: 67px;
