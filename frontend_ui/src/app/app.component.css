@@ -1,8 +1,4 @@
-/* 
-  All major dashboard theme, palette, layout, spacing, and rhythm rules are in styles.css.
-  This file is intentionally left near-empty for app-level overrides only. 
-  Example: tweak transition for dark/light mode, or app-root host-level sizing.
-
+/* Only critical host-level and layout hint styles remain to stay under style budget */
 :host {
   display: block;
   min-height: 100vh;
@@ -10,7 +6,14 @@
   background: var(--color-primary-bg);
   transition: var(--transition-bg);
 }
-*/
+.dashboard-root {
+  min-height: 100vh;
+  display: flex;
+  font-family: var(--font-main);
+  background: var(--color-primary-bg);
+  color: var(--color-primary-text);
+  transition: var(--transition-bg);
+}
 
 /* Minimal override for .dashboard-root, if additional padding/tweaks required
 .dashboard-root {
